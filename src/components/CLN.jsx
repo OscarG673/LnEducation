@@ -15,10 +15,10 @@ const CLN = () => {
   const predefinedResponses = presponses;
   const steps = Object.values(stepsjson.steps);
   const [isChecked, setIsChecked] = useState(true);
+  const [currentTab, setCurrentTab] = useState('tab1');
 
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
-    { console.log(isChecked) }
+  const handleTabChange = (event) => {
+    setCurrentTab(event.target.id);
   };
 
   const navigate = useNavigate();
@@ -207,10 +207,10 @@ const CLN = () => {
     <div className="container">
 
       <div class="tabs">
-        <input type="radio" id="tab1" name="tab-control" checked={isChecked} onChange={handleCheckboxChange} />
-        <input type="radio" id="tab2" name="tab-control"  />
-        <input type="radio" id="tab3" name="tab-control" />
-        <input type="radio" id="tab4" name="tab-control"  />
+        <input type="radio" id="tab1" name="tab-control" checked={currentTab === 'tab1'} onChange={handleTabChange} />
+        <input type="radio" id="tab2" name="tab-control" checked={currentTab === 'tab2'} onChange={handleTabChange}  />
+        <input type="radio" id="tab3" name="tab-control" checked={currentTab === 'tab3'} onChange={handleTabChange} />
+        <input type="radio" id="tab4" name="tab-control" checked={currentTab === 'tab4'} onChange={handleTabChange}/>
 
         <ul>
           <li title="Regtest"><label htmlFor="tab1" role="button"><span>Regtest</span></label></li>
@@ -223,6 +223,162 @@ const CLN = () => {
           <section className='sectionReg'>
 
             <div className="steps">
+              <div className="step">{steps[currentStep]}</div>
+
+              <button onClick={handleNextStep} className="next-button">
+                {currentStep === steps.length - 1 ? 'Terminar' : 'Siguiente'}
+              </button>
+            </div>
+
+            <div className="terminal" ref={terminalRef}>
+              {output.map((line, index) => {
+                const promptLength = 'root@linux:/'.length;
+                const isResponse = index % 2 === 1;
+                const lines = typeof line === 'string' ? line.split('\n') : [line];
+
+
+                return (
+                  <div key={index}>
+                    {lines.map((text, lineIndex) => (
+                      <div key={lineIndex} className={`output-line ${isResponse ? 'response-line' : ''}`}>
+                        {typeof text === 'string' && text.startsWith('root@linux:/') ? (
+                          <>
+                            <span className="prompt">
+                              {text.substring(0, promptLength)}
+                            </span>
+                            {text.substring(promptLength)}
+                          </>
+                        ) : (
+                          text
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+
+              <div className="input-line-container">
+                <span className="prompt">root@linux:/</span>
+                <input
+                  className="input-line"
+                  type="text"
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      handleInput();
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          </section>
+          <section className='sectionTest'>
+          <div className="steps">
+              <div className="step">{steps[currentStep]}</div>
+
+              <button onClick={handleNextStep} className="next-button">
+                {currentStep === steps.length - 1 ? 'Terminar' : 'Siguiente'}
+              </button>
+            </div>
+
+            <div className="terminal" ref={terminalRef}>
+              {output.map((line, index) => {
+                const promptLength = 'root@linux:/'.length;
+                const isResponse = index % 2 === 1;
+                const lines = typeof line === 'string' ? line.split('\n') : [line];
+
+
+                return (
+                  <div key={index}>
+                    {lines.map((text, lineIndex) => (
+                      <div key={lineIndex} className={`output-line ${isResponse ? 'response-line' : ''}`}>
+                        {typeof text === 'string' && text.startsWith('root@linux:/') ? (
+                          <>
+                            <span className="prompt">
+                              {text.substring(0, promptLength)}
+                            </span>
+                            {text.substring(promptLength)}
+                          </>
+                        ) : (
+                          text
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+
+              <div className="input-line-container">
+                <span className="prompt">root@linux:/</span>
+                <input
+                  className="input-line"
+                  type="text"
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      handleInput();
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          </section>
+          <section className='sectionSig'>
+          <div className="steps">
+              <div className="step">{steps[currentStep]}</div>
+
+              <button onClick={handleNextStep} className="next-button">
+                {currentStep === steps.length - 1 ? 'Terminar' : 'Siguiente'}
+              </button>
+            </div>
+
+            <div className="terminal" ref={terminalRef}>
+              {output.map((line, index) => {
+                const promptLength = 'root@linux:/'.length;
+                const isResponse = index % 2 === 1;
+                const lines = typeof line === 'string' ? line.split('\n') : [line];
+
+
+                return (
+                  <div key={index}>
+                    {lines.map((text, lineIndex) => (
+                      <div key={lineIndex} className={`output-line ${isResponse ? 'response-line' : ''}`}>
+                        {typeof text === 'string' && text.startsWith('root@linux:/') ? (
+                          <>
+                            <span className="prompt">
+                              {text.substring(0, promptLength)}
+                            </span>
+                            {text.substring(promptLength)}
+                          </>
+                        ) : (
+                          text
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+
+              <div className="input-line-container">
+                <span className="prompt">root@linux:/</span>
+                <input
+                  className="input-line"
+                  type="text"
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      handleInput();
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          </section>
+          <section className='sectionMain'>
+          <div className="steps">
               <div className="step">{steps[currentStep]}</div>
 
               <button onClick={handleNextStep} className="next-button">
