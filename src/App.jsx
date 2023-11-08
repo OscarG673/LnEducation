@@ -29,13 +29,7 @@ function App() {
             <Routes>
               <Route path="/" element={<CLN/>} />
               <Route path="/achievementbox" element={<AchievementBox />} />
-          
-          
-          
             </Routes>
-
-
-
           </Router>
 
         )}
