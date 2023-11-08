@@ -2,8 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/CLN.css';
 import presponses from '../assets/predefinedResponses.json';
+import presponsesSignet from '../assets/predefinedResponsesSignet.json';
+import presponsesTestnet from '../assets/predefinedResponsesTestnet.json';
 import stepsjson from '../assets/content.json';
-
+import stepsjsonTestnet from '../assets/contenttestnet.json';
+import stepsjsonSignet from '../assets/contentsignet.json';
+import stepsjsonMainet from '../assets/contentMainet.json';
 
 const CLN = () => {
   const [input, setInput] = useState('');
@@ -13,12 +17,21 @@ const CLN = () => {
   const [commandHistory, setCommandHistory] = useState([]);
   const [isTypingResponse, setIsTypingResponse] = useState(false);
   const predefinedResponses = presponses;
+  const predefinedResponsesSignet = presponsesSignet;
+  const predefinedResponsesTestnet = presponsesTestnet;
   const steps = Object.values(stepsjson.steps);
+  const stepsSignet = Object.values(stepsjsonSignet.steps);
+  const stepsTestnet= Object.values(stepsjsonTestnet.steps);
+  const stepsMainet= Object.values(stepsjsonMainet.steps);
   const [isChecked, setIsChecked] = useState(true);
   const [currentTab, setCurrentTab] = useState('tab1');
 
   const handleTabChange = (event) => {
+    setCurrentStep(0);
     setCurrentTab(event.target.id);
+    setOutput([]);
+    setInput('');
+    setCommandHistory([]);
   };
 
   const navigate = useNavigate();
@@ -188,9 +201,528 @@ const CLN = () => {
       setInput('');
     }
   };
+  const handleInputTest = () => {
+    if (isTypingResponse) {
+      return;
+    }
+
+    const trimmedInput = input.trim();
+    console.log(trimmedInput)
+    if (trimmedInput === 'clear') {
+      setOutput([]);
+      setInput('');
+      setCommandHistory([]);
+
+    } 
+    
+    else if (trimmedInput === 'l1-cli listchannels') {
+          
+              const responseArray = predefinedResponsesTestnet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l1-cli listchannels').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+         else if (trimmedInput === 'l2-cli listchannels') {
+          
+              const responseArray = predefinedResponsesTestnet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli listchannels').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput === 'l2-cli getinfo') {
+          
+              const responseArray = predefinedResponsesTestnet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli getinfo').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+
+            else if (trimmedInput === 'l1-cli listfunds') {
+          
+              const responseArray = predefinedResponsesTestnet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l1-cli listfunds').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput === 'l2-cli listfunds') {
+          
+              const responseArray = predefinedResponsesTestnet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli listfunds').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput) {
+      const newCommandHistory = [...commandHistory, trimmedInput];
+
+      if (predefinedResponsesTestnet.hasOwnProperty(trimmedInput)) {
+        const response = predefinedResponsesTestnet[trimmedInput];
+        console.log(response);
+        const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+        setOutput(newOutput);
+
+        const responseOutput = `root@linux:/ ${response}`;
+        newOutput.push(responseOutput);
+        setOutput([...newOutput]);
+
+        setIsTypingResponse(true);
+
+        let typingIndex = 0;
+        const typingInterval = setInterval(() => {
+          if (typingIndex < response.length) {
+            newOutput[newOutput.length - 1] = `${response.substring(0, typingIndex + 1)}`;
+            setOutput([...newOutput]);
+            typingIndex++;
+          } else {
+            clearInterval(typingInterval);
+            setIsTypingResponse(false);
+          }
+        }, 10);
+      } else {
+        const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error"> Unrecognized command: ${trimmedInput} </span>];
+        setOutput(newOutput);
+      }
+
+      setCommandHistory(newCommandHistory);
+      setInput('');
+    }
+  };
+
+
+  const handleInputSignet = () => {
+    if (isTypingResponse) {
+      return;
+    }
+
+    const trimmedInput = input.trim();
+    console.log(trimmedInput)
+    if (trimmedInput === 'clear') {
+      setOutput([]);
+      setInput('');
+      setCommandHistory([]);
+
+    } 
+    
+    else if (trimmedInput === 'l1-cli listchannels') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l1-cli listchannels').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+         else if (trimmedInput === 'l2-cli listchannels') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli listchannels').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput === 'l2-cli getinfo') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli getinfo').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+
+            else if (trimmedInput === 'l1-cli listfunds') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l1-cli listfunds').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput === 'l2-cli listfunds') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli listfunds').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput) {
+      const newCommandHistory = [...commandHistory, trimmedInput];
+
+      if (predefinedResponsesSignet.hasOwnProperty(trimmedInput)) {
+        const response = predefinedResponsesSignet[trimmedInput];
+        console.log(response);
+        const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+        setOutput(newOutput);
+
+        const responseOutput = `root@linux:/ ${response}`;
+        newOutput.push(responseOutput);
+        setOutput([...newOutput]);
+
+        setIsTypingResponse(true);
+
+        let typingIndex = 0;
+        const typingInterval = setInterval(() => {
+          if (typingIndex < response.length) {
+            newOutput[newOutput.length - 1] = `${response.substring(0, typingIndex + 1)}`;
+            setOutput([...newOutput]);
+            typingIndex++;
+          } else {
+            clearInterval(typingInterval);
+            setIsTypingResponse(false);
+          }
+        }, 10);
+      } else {
+        const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error"> Unrecognized command: ${trimmedInput} </span>];
+        setOutput(newOutput);
+      }
+
+      setCommandHistory(newCommandHistory);
+      setInput('');
+    }
+  };
+
+  const handleInputMainet = () => {
+    if (isTypingResponse) {
+      return;
+    }
+
+    const trimmedInput = input.trim();
+    console.log(trimmedInput)
+    if (trimmedInput === 'clear') {
+      setOutput([]);
+      setInput('');
+      setCommandHistory([]);
+
+    } 
+    
+    else if (trimmedInput === 'l1-cli listchannels') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l1-cli listchannels').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+         else if (trimmedInput === 'l2-cli listchannels') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli listchannels').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput === 'l2-cli getinfo') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli getinfo').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+
+            else if (trimmedInput === 'l1-cli listfunds') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l1-cli listfunds').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput === 'l2-cli listfunds') {
+          
+              const responseArray = predefinedResponsesSignet[trimmedInput];
+            const responseIndex = commandHistory.filter((cmd) => cmd === 'l2-cli listfunds').length;
+
+            if (responseArray && responseArray.length > 0) {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+                setOutput(newOutput);
+
+                if (responseIndex < responseArray.length) {
+                    newOutput.push(`root@linux:/ ${responseArray[responseIndex]}`);
+                    setOutput([...newOutput]);
+                }
+
+                const newCommandHistory = [...commandHistory, trimmedInput];
+                setCommandHistory(newCommandHistory);
+                setInput('');
+            } else {
+                const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error">Comando no reconocido: ${trimmedInput}</span>];
+                setOutput(newOutput);
+                setInput('');
+            }
+        }
+        else if (trimmedInput) {
+      const newCommandHistory = [...commandHistory, trimmedInput];
+
+      if (predefinedResponsesSignet.hasOwnProperty(trimmedInput)) {
+        const response = predefinedResponsesSignet[trimmedInput];
+        console.log(response);
+        const newOutput = [...output, `root@linux:/ ${trimmedInput}`];
+        setOutput(newOutput);
+
+        const responseOutput = `root@linux:/ ${response}`;
+        newOutput.push(responseOutput);
+        setOutput([...newOutput]);
+
+        setIsTypingResponse(true);
+
+        let typingIndex = 0;
+        const typingInterval = setInterval(() => {
+          if (typingIndex < response.length) {
+            newOutput[newOutput.length - 1] = `${response.substring(0, typingIndex + 1)}`;
+            setOutput([...newOutput]);
+            typingIndex++;
+          } else {
+            clearInterval(typingInterval);
+            setIsTypingResponse(false);
+          }
+        }, 10);
+      } else {
+        const newOutput = [...output, `root@linux:/ ${trimmedInput}`, <span className="error"> Unrecognized command: ${trimmedInput} </span>];
+        setOutput(newOutput);
+      }
+
+      setCommandHistory(newCommandHistory);
+      setInput('');
+    }
+  };
 
   const handleNextStep = () => {
     if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      navigate('/achievementbox');
+    }
+  };
+  const handleNextStepSignet = () => {
+    if (currentStep < stepsSignet.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      navigate('/achievementbox');
+    }
+  };
+  const handleNextStepMainet = () => {
+    if (currentStep < stepsSignet.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      navigate('/achievementbox');
+    }
+  };
+  const handleNextStepTestnet = () => {
+    if (currentStep < stepsTestnet.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
       navigate('/achievementbox');
@@ -226,7 +758,7 @@ const CLN = () => {
               <div className="step">{steps[currentStep]}</div>
 
               <button onClick={handleNextStep} className="next-button">
-                {currentStep === steps.length - 1 ? 'Terminar' : 'Siguiente'}
+                {currentStep === steps.length - 1 ? 'Finish' : 'Next'}
               </button>
             </div>
 
@@ -275,10 +807,10 @@ const CLN = () => {
           </section>
           <section className='sectionTest'>
           <div className="steps">
-              <div className="step">{steps[currentStep]}</div>
+              <div className="step">{stepsTestnet[currentStep]}</div>
 
-              <button onClick={handleNextStep} className="next-button">
-                {currentStep === steps.length - 1 ? 'Terminar' : 'Siguiente'}
+              <button onClick={handleNextStepTestnet} className="next-button">
+                {currentStep === stepsTestnet.length - 1 ? 'Finish' : 'Next'}
               </button>
             </div>
 
@@ -318,7 +850,7 @@ const CLN = () => {
                   onChange={(event) => setInput(event.target.value)}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter') {
-                      handleInput();
+                      handleInputTest();
                     }
                   }}
                 />
@@ -327,10 +859,10 @@ const CLN = () => {
           </section>
           <section className='sectionSig'>
           <div className="steps">
-              <div className="step">{steps[currentStep]}</div>
+              <div className="step">{stepsSignet[currentStep]}</div>
 
-              <button onClick={handleNextStep} className="next-button">
-                {currentStep === steps.length - 1 ? 'Terminar' : 'Siguiente'}
+              <button onClick={handleNextStepSignet} className="next-button">
+                {currentStep === stepsSignet.length - 1 ? 'Finish' : 'Next'}
               </button>
             </div>
 
@@ -370,7 +902,7 @@ const CLN = () => {
                   onChange={(event) => setInput(event.target.value)}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter') {
-                      handleInput();
+                      handleInputSignet();
                     }
                   }}
                 />
@@ -379,10 +911,10 @@ const CLN = () => {
           </section>
           <section className='sectionMain'>
           <div className="steps">
-              <div className="step">{steps[currentStep]}</div>
-
-              <button onClick={handleNextStep} className="next-button">
-                {currentStep === steps.length - 1 ? 'Terminar' : 'Siguiente'}
+              <div className="step">{stepsMainet[currentStep]}</div>
+              
+              <button onClick={handleNextStepMainet} className="next-button">
+                {currentStep === stepsMainet.length - 1 ? 'Finish' : 'Next'}
               </button>
             </div>
 
@@ -422,7 +954,7 @@ const CLN = () => {
                   onChange={(event) => setInput(event.target.value)}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter') {
-                      handleInput();
+                      handleInputMainet();
                     }
                   }}
                 />

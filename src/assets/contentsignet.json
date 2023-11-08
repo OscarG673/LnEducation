@@ -1,0 +1,113 @@
+{
+    "cards": [
+      {
+        "title": "Promotion of Active Learning",
+        "content": "The main goal was to establish an interactive platform that enables individuals to immerse themselves in a journey of active learning, driven by hands-on exercises.",
+        "image": "icono1.svg"
+      },
+      {
+        "title": "Supporting Fellow Learners",
+        "content": "The core purpose was to offer a valuable hub for all those seeking effective, self-directed education, providing guidance and resources to diverse learners.",
+        "image": "icon2.svg"
+      },
+      {
+        "title": "Hands-On Coding",
+        "content": "Experience Lightning Network by typing and executing actual code with syntax highlighting",
+        "image": "icono3.svg"
+      },
+      {
+        "title": "Engaging Experience",
+        "content": "Our passion lies in creating an immersive, understandable learning journey.",
+        "image": "icono4.svg"
+      },
+      {
+        "title": "Igniting Curiosity",
+        "content": " By granting free access and content suitable for learners of varying proficiency levels, the ambition was to ignite curiosity and enthusiasm for continuous learning.",
+        "image": "icono5.svg"
+      }
+    ],
+    "list": [
+      {
+        "title": "A Spectrum of Cool Subjects",
+        "content": "Through our \"type and execute code yourself\" approach, you'll immerse yourself in practical and interactive learning. Engage with real-time exercises for a deeper understanding."
+      },
+      {
+        "title": "Hands-On Experience",
+        "content": "LightningLearn offers a complete learning immersion. Engage in tasks, challenges, lessons, and quizzes that refine your Lightning Network skill"
+      },
+      {
+        "title": "Real-time Practice Access",
+        "content": "We offer the opportunity to work on real-time exercises and simulations. This allows you to directly apply your knowledge and experience Lightning Network in a secure environment."
+      }
+    ],
+    "resources": [
+      {
+        "title": "The Bitcoin Lightning Network:\n Scalable Off-Chain Instant Payments",
+        "content": "https://lightning.network/lightning-network-paper.pdf"
+      },
+      {
+        "title": "What is Linux?",
+        "content": "https://www.linux.com/what-is-linux/"
+      }
+    ],
+    "generalContent": {
+      "title": "ZapZone Learning",
+      "btn-start": "START",
+      "question": "Why ZapZone Learning?"
+    },
+    "implementations": [
+      {
+        "title": "Core Lightning (previously c-lightning) ",
+        "content": "is a lightweight, highly customizable and standard compliant implementation of the Lightning Network protocol.",
+        "link": "https://github.com/lightningnetwork/lnd",
+        "linkroute": "/deploy/cln"
+      },
+      {
+        "title": "Eclair",
+        "content": "Eclair (French for Lightning) is a Scala implementation of the Lightning Network.",
+        "link": "https://github.com/ACINQ/eclair#installing-eclair",
+        "linkroute": "/deploy/eclair"
+      },
+      {
+        "title": "The Lightning Network Daemon",
+        "content": "is a complete implementation of a Lightning Network node. lnd has several pluggable back-end chain services including btcd (a full-node), bitcoind, and neutrino (a new experimental light client)",
+        "link": "https://github.com/ElementsProject/lightning",
+        "linkroute": "/deploy/lnd"
+      }
+    ],
+    "steps": {
+      "Step 0": "To view available commands, type : help",
+      "Step 1": "Clear the terminal: clear",
+      "Step 2": "Download Bitcoin Core: curl -OL https://bitcoincore.org/bin/bitcoin-core-25.1/bitcoin-25.1-x86_64-linux-gnu.tar.gz ",
+      "Step 3": "Unzip Bitcoin Core: tar xvf bitcoin-25.1-x86_64-linux-gnu.tar.gz",
+      "Step 4": "Open Folder: cd bitcoin-25.1/bin",
+      "Step 5": "Start Node: bitcoind -signet",
+      "Step 6": "OPTIONAL: ./bitcoin-cli -testnet -getinfo:",
+      "Step 8": "Create a Wallet: ./bitcoin-cli -testnet createwallet 'test'",
+      "Step 9": "Get Wallet Balance: ./bitcoin-cli -testnet getbalance",
+      "Step 10": "Generate an address to receive: ./bitcoin-cli -testnet getnewaddress",
+      "Step 11": "We wait for the transaction to be confirmed and verify: ./bitcoin-cli -testnet getbalance",
+      "Step 12": "Pay to wallet: ./bitcoin-cli -testnet sendtoaddress tb1qqggk9mvgzncnx9gda7nxlqg0d6g7vcfh30x4gp 0.00001",
+      "Step 13": "LIGHTNING. In a new terminal, clone the repository: git clone https://github.com/ElementsProject/lightning.git ",
+      "Step 14": "Enter to Lightning: cd lightning",
+      "Step 15": "Install the dependencies: sudo apt-get install -y  \nautoconf automake build-essential git libtool libsqlite3-dev \npython3 python3-pip net-tools zlib1g-dev libsodium-dev gettext \n pip3 install --upgrade pip\n pip3 install --user poetry",
+      "Step 16": "Install Bitcoin Core using snapd: sudo apt-get install snapd",
+      "Step 17": "Install Bitcoin Core: sudo snap install bitcoin-core",
+      "Step 18": "Add files to bin folder inside usr: sudo ln -s /snap/bitcoin-core/current/bin/bitcoin{d,-cli} /usr/local/bin/ ",
+      "Step 20": "compile c-lightning: ./configure make",
+      "Step 21": "Open Lightning Folder: cd lightningd",
+      "Step 22": "Run lightningd: lightningd -signet",
+      "Step 23": "Create a new wallet: bitcoin-cli -signet createwallet 'test'",
+      "Step 24": "Get the balance of the wallet: bitcoin-cli -signet getbalance",
+      "Step 25": "generate an address to receive: bitcoin-cli -signet getnewaddress",
+      "Step 26": "Wait for the transaction to be confirmed and verify: bitcoin-cli -signet getbalance",
+      "Step 27": "lightning-cli -signet newaddr: Get and address",
+      "Step 28": "Send funds to my wallet: bitcoin-cli -signet sendtoaddress tp1qxlgkw57ue298lmtt4xpzstalgzzh8gmg3pgvke 0.005 btc",
+      "Step 29": "Get funds from my wallet: lightning-cli -signet listfunds",
+      "Step 30": "Connect to another node:  lightning-cli -signet connect 0212e254cf5a6fd9074c40d0d86b95ada6576443ab4e275188e7a25bb920efc57e@127.0.0.1:7171",
+      "Step 31": "Fund channel: lightning-cli -signet fundchannel 027530d124566d735277cf74dd030b7ef6fba8f671e67ecd48075827989d977600 500000sat",
+      "Step 32": "Review the created channel: lightning-cli -signet listchannels",
+      "Step 33": "Pay an invoice: lightning-cli -signet pay lnbcrt1u1pjw0cvzsp5fv7sjwu3w5fetavcg7546lak22smryy02jm3h9e7u0qswrk670kspp5d0ff9vunp527xnxpyl2q3ux939tewd4lp5aq9jncjncqceazfzjqdqgwpshjmt9xqyjw5qcqp2rzjqgfwy4x0tfhajp6vgrgds6u44kn9wezr4d8zw5vgu739hwfqalzhuqqp4uqqqqgqqqqqqqqpqqqqqzsqqc9qx3qysgqg7dfhmsxjrwnwuknmquymum8qzc2mt7yqlkpa2vuarge3mn8r6c9xyafl9d7zanjxrv5nc6yn608tsylxhfnjklnlynsyntqn0uc8kqpqrsel6",
+      "Step 34": "Create an invoice lightning-cli invoice 300sat payme \"payme\""
+    }
+  }
