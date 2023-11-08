@@ -8,6 +8,8 @@ import stepsjson from '../assets/content.json';
 import stepsjsonTestnet from '../assets/contenttestnet.json';
 import stepsjsonSignet from '../assets/contentsignet.json';
 import stepsjsonMainet from '../assets/contentMainet.json';
+import Tip from './Tip';
+import Lnurl from "./Lnurl"
 
 const CLN = () => {
   const [input, setInput] = useState('');
@@ -25,6 +27,11 @@ const CLN = () => {
   const stepsMainet= Object.values(stepsjsonMainet.steps);
   const [isChecked, setIsChecked] = useState(true);
   const [currentTab, setCurrentTab] = useState('tab1');
+  
+  const [isTippin, setIsTipping] = useState(false);
+  const [lnurl, setLnurl] = useState("")
+  const [polling, setPolling] = useState("")
+  const [success, setSuccess] = useState(false)
 
   const handleTabChange = (event) => {
     setCurrentStep(0);
@@ -735,7 +742,14 @@ const CLN = () => {
     }
   }, [output]);
 
+
   return (
+    <div>
+    
+    {
+      isTippin && <Lnurl lnurl={lnurl} setIsTipping={setIsTipping}/>
+    }
+      
     <div className="container">
 
       <div class="tabs">
@@ -834,7 +848,7 @@ const CLN = () => {
                           </>
                         ) : (
                           text
-                        )}
+                          )}
                       </div>
                     ))}
                   </div>
@@ -872,7 +886,7 @@ const CLN = () => {
                 const isResponse = index % 2 === 1;
                 const lines = typeof line === 'string' ? line.split('\n') : [line];
 
-
+                
                 return (
                   <div key={index}>
                     {lines.map((text, lineIndex) => (
@@ -905,7 +919,7 @@ const CLN = () => {
                       handleInputSignet();
                     }
                   }}
-                />
+                  />
               </div>
             </div>
           </section>
@@ -923,8 +937,8 @@ const CLN = () => {
                 const promptLength = 'root@linux:/'.length;
                 const isResponse = index % 2 === 1;
                 const lines = typeof line === 'string' ? line.split('\n') : [line];
-
-
+                
+                
                 return (
                   <div key={index}>
                     {lines.map((text, lineIndex) => (
@@ -938,7 +952,7 @@ const CLN = () => {
                           </>
                         ) : (
                           text
-                        )}
+                          )}
                       </div>
                     ))}
                   </div>
@@ -957,15 +971,15 @@ const CLN = () => {
                       handleInputMainet();
                     }
                   }}
-                />
+                  />
               </div>
             </div>
           </section>
         </div>
       </div>
 
-
-
+    </div>
+    <Tip setTipping={setIsTipping} setLnurl={setLnurl} setPolling={setPolling}/>
 
     </div>
   );
