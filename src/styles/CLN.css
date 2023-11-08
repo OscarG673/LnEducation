@@ -316,6 +316,7 @@
   padding: 20px;
   margin: 0 auto;
   margin-bottom: 5%;
+  text-align: center;
   width: 100%;
   font-family: 'Roboto', sans-serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -323,6 +324,7 @@
 
 .step {
   margin-bottom: 10px;
+  word-break: break-word;
   color: var(--text-color);
   font-family: 'Roboto', sans-serif;
 }
@@ -340,7 +342,7 @@
 }
 
 .next-button:hover {
-  background-color: #d0a0ff;
+  background-color: #fc7500;
   transform: scale(1.05);
 }
 
